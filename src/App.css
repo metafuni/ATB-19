@@ -1,38 +1,20 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  overflow-x: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* #particles-js {
+    background: #f1f6f9;
+    height: 100vh;
+} */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/* COLOUR PALETTE - to be updated on Material UI theme */
+/* BACKGROUND: #f1f6f9;
+DARKBLUE: #14274e;
+MIDBLUE: #394867;
+LIGHTBLUE: #9ba4b4; 
+BLUE: #1121b8cb;
+BRIGHTBLUE: #0f3dd3cb*/
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

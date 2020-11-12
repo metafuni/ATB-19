@@ -1,0 +1,101 @@
+.search {
+  text-align: center;
+}
+
+.search .search-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search .search-form input {
+  padding: 0.8rem 1rem;
+  opacity: 0.8;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1), inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.1), inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search .search-form input:focus {
+  -webkit-box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.2), inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: inset -4px -4px 5px rgba(200, 200, 200, 0.2), inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+.search .react-autosuggest__container {
+  position: relative;
+}
+
+.search .react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  padding: 2px 5px;
+  font-weight: 300;
+  font-size: 16px;
+  border: none;
+  opacity: .5;
+  color: #14274e;
+  transition: .3s;
+  border-bottom: 2px solid #9ba4b4;
+}
+
+.search .react-autosuggest__input--focused {
+  outline: none;
+  opacity: 1;
+}
+
+.search .react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.search .react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.search .react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 45px;
+  left: 0px;
+  width: 280px;
+  border-radius: 5px;
+  -webkit-box-shadow: 4px 4px 5px rgba(200, 200, 200, 0.8);
+          box-shadow: 4px 4px 5px rgba(200, 200, 200, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+  color: #14274e;
+}
+
+.search .react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.search .react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.search .react-autosuggest__suggestion:hover {
+  color: #1f52b8;
+  border-left: 2px solid #1f52b8;
+  border-right: 2px solid #1f52b8;
+  background: #12357a0a;
+}
+
+/* .search .react-autosuggest__suggestion--highlighted {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+} */
