@@ -5,6 +5,7 @@ import Datamap from './components/Datamap';
 import Info from './components/Info';
 import Home from './components/Home';
 import Search from './components/Search';
+import jsonData from './owid-covid-data.json';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -32,9 +33,11 @@ function App() {
     };
 
     useEffect(() => {
-        fetch('https://covid.ourworldindata.org/data/owid-covid-data.json').then(res => res.json()).then((data) => {
-            changeCountry(data.OWID_WRL);
-        });
+        // fetch('https://covid.ourworldindata.org/data/owid-covid-data.json').then(res => res.json()).then((data) => {
+        //     changeCountry(data);
+        // });
+        // fetch(jsonData).then(res => res.text()).then(data => changeCountry(data));
+        changeCountry(jsonData);
     }, []);
 
     useEffect(() => {console.log(basket)}, [basket]);

@@ -3,6 +3,10 @@ body {
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+}
+
 /* #particles-js {
     background: #f1f6f9;
     height: 100vh;
