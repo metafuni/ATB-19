@@ -23,7 +23,7 @@ import { useStateValue } from './StateProvider';
 function App() {
 
     const [content, setContent] = useState("");
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket, countryBasket }, dispatch] = useStateValue();
 
     const changeCountry = (location) => {
         dispatch({
@@ -37,6 +37,7 @@ function App() {
         //     changeCountry(data);
         // });
         // fetch(jsonData).then(res => res.text()).then(data => changeCountry(data));
+        // fetch('https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName=england&structure={"date":"date","areaName":"areaName","areaCode":"areaCode","newCasesByPublishDate":"newCasesByPublishDate","cumCasesByPublishDate":"cumCasesByPublishDate","newDeathsByDeathDate":"newDeathsByDeathDate","cumDeathsByDeathDate":"cumDeathsByDeathDate"}').then(res => res.json()).then(data => console.log(data));
         changeCountry(jsonData);
     }, []);
 

@@ -5,6 +5,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 0;
+  color: rgba(241, 246, 249, 0.494);
 }
 
 /* #particles-js {
@@ -20,5 +21,4 @@ MIDBLUE: #394867;
 LIGHTBLUE: #9ba4b4; 
 BLUE: #1121b8cb;
 BRIGHTBLUE: #0f3dd3cb*/
-
 

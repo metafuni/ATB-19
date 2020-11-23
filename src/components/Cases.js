@@ -12,43 +12,50 @@ function Cases() {
     const [weekIncrease, setWeekIncrease] = useState();
 
     const calcDailyIncrease = () => {
-        let today = basket[0].OWID_WRL.data[basket[0].OWID_WRL.data.length - 1].new_cases;
-        let yesterday = basket[0].OWID_WRL.data[basket[0].OWID_WRL.data.length - 2].new_cases;
-        let difference = today - yesterday;
-        setDailyDifference(difference);
-        let percentage = (difference / today) * 100;
-        setDailyIncrease(percentage.toFixed(2));
+        if (basket[0].OWID_WRL.data.length >= 2) {
+            let today = basket[0].OWID_WRL.data[basket[0].OWID_WRL.data.length - 1].new_cases;
+            let yesterday = basket[0].OWID_WRL.data[basket[0].OWID_WRL.data.length - 2].new_cases;
+            let difference = today - yesterday;
+            setDailyDifference(difference);
+            let percentage = (difference / today) * 100;
+            setDailyIncrease(percentage.toFixed(2));
+        } else {
+            setDailyDifference('-');
+            setDailyIncrease('-');
+        };
     };
 
     const calcWeeklyNumber = () => {
-        let weekArray = [];
-        for (let i = 1; i < 8; i++) {
-            weekArray.push(basket[0].OWID_WRL.data[basket[0].OWID_WRL.data.length - i].new_cases);
-        };
-        let weeknum = weekArray.reduce((a, b) => a + b, 0)
+        if (basket[0].OWID_WRL.data.length >= 7) {
+            let weekArray = [];
+            for (let i = 1; i < 8; i++) {
+                weekArray.push(basket[0].OWID_WRL.data[basket[0].OWID_WRL.data.length - i].new_cases);
+            };
+            let weeknum = weekArray.reduce((a, b) => a + b, 0)
 
-        setWeekFigure(weeknum);
-        calcWeeklyIncrease(weeknum);
+            setWeekFigure(weeknum);
+            calcWeeklyIncrease(weeknum);
+        } else {
+            setWeekFigure('-');
+        };
     };
 
     const calcWeeklyIncrease = (weeknum) => {
-        // let today = basket[0].OWID_WRL.data[basket[0].OWID_WRL.data.length - 1].new_cases;
-        // let yesterday = basket[0].OWID_WRL.data[basket[0].OWID_WRL.data.length - 2].new_cases;
-        // let difference = today - yesterday;
-        // setDailyDifference(difference);
-        // let percentage = (difference / today) * 100;
-        // setDailyIncrease(percentage.toFixed(2));
+        if (basket[0].OWID_WRL.data.length >= 14) {
+            let lastweekArray = [];
+            for (let i = 8; i < 15; i++) {
+                lastweekArray.push(basket[0].OWID_WRL.data[basket[0].OWID_WRL.data.length - i].new_cases);
+            };
+            let lastweekNumber = lastweekArray.reduce((a, b) => a + b, 0);
+            console.log(weeknum)
 
-        let lastweekArray = [];
-        for (let i = 8; i < 15; i++) {
-            lastweekArray.push(basket[0].OWID_WRL.data[basket[0].OWID_WRL.data.length - i].new_cases);
+            setWeekDifference(weeknum - lastweekNumber);
+            let percentage = ((weeknum - lastweekNumber) / weeknum) * 100;
+            setWeekIncrease(percentage.toFixed(2));
+        } else {
+            setWeekDifference('-');
+            setWeekIncrease('-');
         };
-        let lastweekNumber = lastweekArray.reduce((a, b) => a + b, 0);
-        console.log(weeknum)
-
-        setWeekDifference(weeknum - lastweekNumber);
-        let percentage = ((weeknum - lastweekNumber)/weeknum) * 100;
-        setWeekIncrease(percentage.toFixed(2));
     };
 
 

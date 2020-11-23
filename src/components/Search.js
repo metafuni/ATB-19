@@ -23,7 +23,16 @@ function Search() {
     const [country, setCountry] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ countryBasket }, dispatch] = useStateValue();
+
+    const changeCountry = (countryLocation) => {
+        dispatch({
+            type: 'SET_COUNTRY_BASKET',
+            countryLocation
+        });
+    };
+
+    useEffect(() => {console.log(countryBasket)}, [countryBasket]);
 
     return (
         <div className="search">
@@ -57,7 +66,7 @@ function Search() {
                     }}
                     onSuggestionSelected={(event, { suggestion, method }) => {
                         if (method === 'enter' || method === 'click') {
-                            // changeCountry(suggestion);
+                            changeCountry(suggestion);
                         }
                         setCountry(suggestion.name);
                     }}

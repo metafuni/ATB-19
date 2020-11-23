@@ -1,5 +1,8 @@
 export const initialState = {
-    basket: []
+    basket: [],
+    countryBasket: [{
+        name: 'World'
+    }]
 };
 
 const reducer = (state, action) => {
@@ -10,6 +13,11 @@ const reducer = (state, action) => {
                 basket: [action.location]
             };
             break;
+        case 'SET_COUNTRY_BASKET':
+            return {
+                ...state,
+                countryBasket: [action.countryLocation]
+            }
         default:
             return state;
     };

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Globe from '../flags/world.svg';
-import Flag from '../flags/us.svg';
 import { useStateValue } from '../StateProvider';
 
 import Cases from './Cases';
 import Deaths from './Deaths';
+import Loading from './Loading';
 
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Home() {
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket, countryBasket }, dispatch] = useStateValue();
     const classes = useStyles();
 
     // if (basket.length) {
@@ -48,8 +48,11 @@ function Home() {
                 <Grid item xs>
                     <Container className={classes.container}>
                         <Container className={classes.containerLeft}>
-                            <img src={Globe} width="60" height="60" alt="world" style={{ marginRight: "1.5rem", borderRadius: '50%' }} />
-                            {basket.length && basket[0].OWID_WRL.location}
+                            {countryBasket[0].flag ? 
+                                (<img src={countryBasket[0].flag} width="auto" height="60" alt="world" style={{ marginRight: "1.5rem" }} />) : 
+                                (<img src={Globe} width="60" height="60" alt="world" style={{ marginRight: "1.5rem", borderRadius: '50%' }} />)
+                            }
+                            {countryBasket.length && countryBasket[0].name}
                         </Container>
                             <Typography style={{textAlign: 'right'}}>
                                 latest COVID-19 data<br></br> per 14/11/2020
@@ -69,7 +72,7 @@ function Home() {
                     </Paper>
                 </Grid>
             </Grid>
-
+            {/* <Loading /> */}
         </div>
     )
 }
