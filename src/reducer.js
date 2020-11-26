@@ -1,7 +1,8 @@
 export const initialState = {
     basket: [],
     countryBasket: [{
-        name: 'World'
+        name: 'World',
+        alpha3Code: 'OWID_WRL'
     }]
 };
 

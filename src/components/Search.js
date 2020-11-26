@@ -23,7 +23,7 @@ function Search() {
     const [country, setCountry] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     
-    const [{ countryBasket }, dispatch] = useStateValue();
+    const [{ basket, countryBasket }, dispatch] = useStateValue();
 
     const changeCountry = (countryLocation) => {
         dispatch({
@@ -31,8 +31,6 @@ function Search() {
             countryLocation
         });
     };
-
-    useEffect(() => {console.log(countryBasket)}, [countryBasket]);
 
     return (
         <div className="search">

@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Datamap from './components/Datamap';
 import Info from './components/Info';
 import Home from './components/Home';
-import Search from './components/Search';
 import jsonData from './owid-covid-data.json';
 
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -41,7 +40,9 @@ function App() {
         changeCountry(jsonData);
     }, []);
 
-    useEffect(() => {console.log(basket)}, [basket]);
+    useEffect(() => {
+        console.log(basket);
+    });
 
     return (
         <Router>
@@ -104,7 +105,6 @@ function App() {
                 />
                 <div className="app">
                     <Navbar />
-                    {/* <Search /> */}
                 </div>
 
                 <Switch>

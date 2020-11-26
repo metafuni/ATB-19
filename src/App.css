@@ -8,6 +8,19 @@ body {
   color: rgba(241, 246, 249, 0.494);
 }
 
+.fontawesomeicon {
+  animation: loading 5s ease-in-out forwards infinite;
+}
+
+@keyframes loading {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  15%, 85% {
+    transform: rotateY(360deg);
+  }
+}
+
 /* #particles-js {
     background: #f1f6f9;
     height: 100vh;

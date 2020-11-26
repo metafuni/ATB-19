@@ -38,10 +38,6 @@ function Home() {
     const [{ basket, countryBasket }, dispatch] = useStateValue();
     const classes = useStyles();
 
-    // if (basket.length) {
-    //     console.log(basket[0].OWID_WRL)
-    // };
-
     return (
         <div className={classes.root}>
             <Grid container spacing={3}>

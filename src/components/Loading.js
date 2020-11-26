@@ -17,9 +17,9 @@ function Loading() {
                 width: '100vw',
                 height: '100vh'
             }}>
-            <h3>
-                <FontAwesomeIcon icon={faShieldVirus} size="xs" style={{ marginRight: '.2rem', color: '#0f3dd3cb' }} />ATB-19
-            </h3>
+            <h2 style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <FontAwesomeIcon className="fontawesomeicon" icon={faShieldVirus} size="6x" style={{ marginBottom: '.75rem', color: '#0f3dd3cb' }} />ATB-19
+            </h2>
         </div>
     )
 }
