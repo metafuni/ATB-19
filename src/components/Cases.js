@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useStateValue } from '../StateProvider';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { XYPlot, VerticalBarSeries, LineSeries, XAxis, YAxis, LabelSeries } from 'react-vis';
 
 function Cases() {
     const [{ basket, countryBasket }, dispatch] = useStateValue();
@@ -11,6 +13,9 @@ function Cases() {
     const [weekDifference, setWeekDifference] = useState();
     const [weekIncrease, setWeekIncrease] = useState();
     const [countryCode, setCountryCode] = useState();
+    const [data, setData] = useState([]);
+
+    let dataArray = [];
 
     const calcDailyIncrease = () => {
         if (countryCode && basket[0][countryCode].data.length >= 2) {
@@ -56,6 +61,14 @@ function Cases() {
         };
     };
 
+    const calcData = () => {
+        for (let i = 0; i < basket[0][countryCode].data.length; i++) {
+            dataArray.push({ x: i, y: basket[0][countryCode].data[i].new_cases });
+        };
+        setData(dataArray);
+        console.log(data)
+    };
+
     useEffect(() => {
         setCountryCode(countryBasket[0].alpha3Code);
         if (basket.length) {
@@ -64,19 +77,48 @@ function Cases() {
         };
     });
 
+    useEffect(() => {
+        if (basket.length) {
+            calcData();
+        };
+    }, [countryCode]);
+
     return (
         <div>
-            New confirmed cases of COVID-19
+            {data.length && 
+            <XYPlot height={290} width={650}>
+                <VerticalBarSeries data={data} color="#9ba4b4" style={{ opacity: .8 }} />
+                <LineSeries data={data} color="#0f3dd3cb" curve={'curveMonotoneX'} style={{ strokeWidth: 2 }} />
+                <XAxis />
+                <YAxis />
+                <LabelSeries animation allowOffsetToBeReversed data={data} />
+            </XYPlot>}
+            {/* New confirmed cases of COVID-19
+            ATB-19
             <br></br>
             <h3>today: {basket.length && countryCode && basket[0][countryCode].data[basket[0][countryCode].data.length - 1].new_cases}</h3>
-            <h3>difference: {dailyDifference} ({dailyIncrease}%)</h3>
+            <h3 style={dailyDifference > 0 ? 
+                { background: 'rgba(204,226,216,1)', color: 'rgba(0,90,48,1)' } : 
+                { background: 'rgba(246,215,210,1)', color: 'rgba(148,37,20,1)' }}>
+                    {dailyDifference > 0 ? 
+                        <FontAwesomeIcon icon={faArrowUp} style={{ color: '#636a6d', marginRight: '.2rem', transform: 'scale(.8)' }} /> : 
+                        <FontAwesomeIcon icon={faArrowUp} style={{ color: '#636a6d', marginRight: '.2rem', transform: 'scale(.8) rotate(-180deg)' }} />}
+                    {dailyDifference} ({dailyIncrease}%)
+            </h3>
 
             <span>daily number of new people tested positive reported on {basket.length && countryCode && basket[0][countryCode].data[basket[0][countryCode].data.length - 1].date}</span><br></br>
             <h3>last 7 days: {weekFigure}</h3>
-            <h3>difference: {weekDifference} ({weekIncrease}%)</h3>
+            <h3 style={weekDifference > 0 ? 
+                { background: 'rgba(204,226,216,1)', color: 'rgba(0,90,48,1)' } : 
+                { background: 'rgba(246,215,210,1)', color: 'rgba(148,37,20,1)' }}>
+                    {weekDifference > 0 ? 
+                        <FontAwesomeIcon icon={faArrowUp} style={{ color: '#636a6d', marginRight: '.2rem', transform: 'scale(.8)' }} /> : 
+                        <FontAwesomeIcon icon={faArrowUp} style={{ color: '#636a6d', marginRight: '.2rem', transform: 'scale(.8) rotate(-180deg)' }} />}
+                    {weekDifference} ({weekIncrease}%)
+            </h3>
 
             <h3>total: {basket.length && countryCode && basket[0][countryCode].data[basket[0][countryCode].data.length - 1].total_cases}</h3>
-            <span>cumulative total number of people tested positive reported up to {basket.length && countryCode && basket[0][countryCode].data[basket[0][countryCode].data.length - 1].date}</span>
+            <span>cumulative total number of people tested positive reported up to {basket.length && countryCode && basket[0][countryCode].data[basket[0][countryCode].data.length - 1].date}</span> */}
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useStateValue } from '../StateProvider';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 function Deaths () {
     const [{ basket, countryBasket }, dispatch] = useStateValue();
@@ -69,12 +70,24 @@ function Deaths () {
             Deaths attributed to COVID-19
             <br></br>
             <h3>today: {basket.length && countryCode && basket[0][countryCode].data[basket[0][countryCode].data.length - 1].new_deaths}</h3>
-            <h3>difference: {dailyDifference} ({dailyIncrease}%)</h3>
-
+            <h3 style={dailyDifference > 0 ? 
+                { background: 'rgba(204,226,216,1)', color: 'rgba(0,90,48,1)' } : 
+                { background: 'rgba(246,215,210,1)', color: 'rgba(148,37,20,1)' }}>
+                    {dailyDifference > 0 ? 
+                        <FontAwesomeIcon icon={faArrowUp} style={{ color: '#636a6d', marginRight: '.2rem', transform: 'scale(.8)' }} /> : 
+                        <FontAwesomeIcon icon={faArrowUp} style={{ color: '#636a6d', marginRight: '.2rem', transform: 'scale(.8) rotate(-180deg)' }} />}
+                    {dailyDifference} ({dailyIncrease}%)
+            </h3>
             <span>daily number of new deaths attributed to COVID-19 reported on {basket.length && countryCode && basket[0][countryCode].data[basket[0][countryCode].data.length - 1].date}</span><br></br>
             <h3>last 7 days: {weekFigure}</h3>
-            <h3>difference: {weekDifference} ({weekIncrease}%)</h3>
-
+            <h3 style={weekDifference > 0 ? 
+                { background: 'rgba(204,226,216,1)', color: 'rgba(0,90,48,1)' } : 
+                { background: 'rgba(246,215,210,1)', color: 'rgba(148,37,20,1)' }}>
+                    {weekDifference > 0 ? 
+                        <FontAwesomeIcon icon={faArrowUp} style={{ color: '#636a6d', marginRight: '.2rem', transform: 'scale(.8)' }} /> : 
+                        <FontAwesomeIcon icon={faArrowUp} style={{ color: '#636a6d', marginRight: '.2rem', transform: 'scale(.8) rotate(-180deg)' }} />}
+                    {weekDifference} ({weekIncrease}%)
+            </h3>
             <h3>total: {basket.length && countryCode && basket[0][countryCode].data[basket[0][countryCode].data.length - 1].total_deaths}</h3>
             <span>cumulative total deaths attributed to COVID-19 reported up to {basket.length && countryCode && basket[0][countryCode].data[basket[0][countryCode].data.length - 1].date}</span>
         </div>
